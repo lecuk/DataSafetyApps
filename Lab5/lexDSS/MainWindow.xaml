@@ -1,0 +1,115 @@
+﻿<Window x:Class="lexDSS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lexDSS"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <local:ValueConverterGroup x:Key="InverseBooleanToVisibilityConverter">
+            <local:InverseBoolConverter />
+            <BooleanToVisibilityConverter />
+        </local:ValueConverterGroup>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TabControl>
+            <TabItem Header="Sign">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="From file" Grid.Column="0">
+                        <StackPanel>
+                            <Label>Source file</Label>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox Text="{Binding SourceFilePath}" Margin="5"/>
+                                <Button Command="{Binding BrowseSourcePath}" Content="Browse" Grid.Column="1" Margin="5" Width="80"/>
+                            </Grid>
+                            <Button Command="{Binding SignFromFile}" Content="Sign file" Margin="5" Height="40"/>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Header="From text" Grid.Column="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBox Text="{Binding SourceText}" TextWrapping="WrapWithOverflow" Grid.Row="0" Margin="5"/>
+                            <Button Command="{Binding SignFromText}" Content="Sign text" Grid.Row="1" Margin="5" Height="40"/>
+                        </Grid>
+                    </GroupBox>
+                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+                        <Label>Signature</Label>
+                        <TextBox Text="{Binding Signature}" IsReadOnly="True" Margin="5"/>
+                        <Label>Signature path</Label>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Text="{Binding SignaturePath}" Margin="5"/>
+                            <Button Command="{Binding BrowseSignatureSavePath}" Content="Browse" Margin="5" Grid.Column="1" Width="80"/>
+                        </Grid>
+
+                        <Button Command="{Binding SaveSignature}" Content="Save signature" Margin="5" Height="40"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Verify">
+                <StackPanel>
+                    <Label>File path</Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Text="{Binding SourceFilePath}" Margin="5"/>
+                        <Button Command="{Binding BrowseSourcePath}" Content="Browse" Grid.Column="1" Margin="5" Width="80"/>
+                    </Grid>
+                    <Label>Signature path</Label>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Text="{Binding SignaturePath}" Margin="5"/>
+                        <Button Command="{Binding BrowseSignatureLoadPath}" Content="Browse" Margin="5" Grid.Column="1" Width="80"/>
+                    </Grid>
+
+                    <Button Command="{Binding Verify}" Content="Verify file" Margin="5" Height="40"/>
+
+                    <GroupBox Header="Result" Height="60">
+                        <Grid>
+                            <Label Visibility="{Binding IsVerified, Converter={StaticResource BooleanToVisibilityConverter}}" Content="Verified" Foreground="Green" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <Label Visibility="{Binding IsVerified, Converter={StaticResource InverseBooleanToVisibilityConverter}}" Content="Not verified" Foreground="DarkOrange" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+
+        <TextBox Text="{Binding ErrorMessage}" Foreground="Red" Margin="5" Grid.Row="1" Height="40"/>
+    </Grid>
+    
+</Window>

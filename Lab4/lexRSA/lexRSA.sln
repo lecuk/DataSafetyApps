@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1525
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lexRSA", "lexRSA.csproj", "{54022D80-CCA0-4E16-A7E5-30121849C213}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54022D80-CCA0-4E16-A7E5-30121849C213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54022D80-CCA0-4E16-A7E5-30121849C213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54022D80-CCA0-4E16-A7E5-30121849C213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54022D80-CCA0-4E16-A7E5-30121849C213}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9CB2B6E-3766-4BB0-8660-11096E7D835A}
+	EndGlobalSection
+EndGlobal
