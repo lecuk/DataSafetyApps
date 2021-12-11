@@ -8,4 +8,4 @@ This is a set of university projects which implement some of data safety service
 - Lab4 - RSA encryption (usage of existing library)
 - Lab5 - DSS signature (usage of existing library)
 
-All apps are created with clean MVVM without side dependencies.
+All apps are created on WPF framework with clean MVVM without side dependencies.
